@@ -1,0 +1,17 @@
+body{
+    font-family: Arial;
+    padding: 20px;
+}
+
+nav a{
+    margin-right: 10px;
+}
+
+form{
+    margin-bottom: 20px;
+}
+
+input, textarea{
+    display:block;
+    margin-bottom:10px;
+}
