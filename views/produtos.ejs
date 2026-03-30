@@ -18,34 +18,48 @@
 
 <h1 class="text-2xl font-bold mb-6">Gerenciamento de Produtos</h1>
 
-<h2 class="text-lg font-semibold mb-3">Cadastrar Produto</h2>
+<h2 class="text-lg font-semibold mb-3">
+<%= produtoEditando ? "Editar Produto" : "Cadastrar Produto" %>
+</h2>
 
-<form action="/produtos" method="POST" class="space-y-4 mb-10">
+<form
+action="<%= produtoEditando ? '/atualizar/' + produtoEditando.id : '/produtos' %>"
+method="POST"
+class="space-y-4 mb-10"
+>
 
 <div>
 <label class="block mb-1">Nome do Produto</label>
+
 <input
 type="text"
 name="nome"
+value="<%= produtoEditando ? produtoEditando.nome : '' %>"
 required
 class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500"
 />
+
 </div>
 
 <div>
 <label class="block mb-1">Preço</label>
+
 <input
 type="number"
 name="preco"
+value="<%= produtoEditando ? produtoEditando.preco : '' %>"
 required
 class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500"
 />
+
 </div>
 
 <button
 class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
 >
-Adicionar Produto
+
+<%= produtoEditando ? "Atualizar Produto" : "Adicionar Produto" %>
+
 </button>
 
 </form>
@@ -70,6 +84,15 @@ class="w-full border p-2 rounded mb-6"
 <%= produto.nome %> - R$ <%= produto.preco %>
 </span>
 
+<div class="flex gap-3">
+
+<a
+href="/editar/<%= produto.id %>"
+class="text-blue-600 hover:underline"
+>
+Editar
+</a>
+
 <a
 href="/excluir/<%= produto.id %>"
 onclick="return confirm('Tem certeza que deseja excluir este produto?')"
@@ -77,6 +100,8 @@ class="text-red-600 hover:underline"
 >
 Excluir
 </a>
+
+</div>
 
 </li>
 
@@ -86,7 +111,7 @@ Excluir
 
 </div>
 
-<script> //PEDIR PRO CHAT EXPLICAR ESSA PARTE DO CÓDIGO
+<script>
 
 const search = document.getElementById("search")
 const products = document.querySelectorAll("#productList li")

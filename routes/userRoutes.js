@@ -12,6 +12,12 @@ router.get("/produtos", userController.produtos);
 
 router.post("/produtos", userController.cadastrarProduto);
 
+router.get("/editar/:id", (req, res) => {
+    res.redirect("/produtos?editar=" + req.params.id);
+});
+
+router.post("/atualizar/:id", userController.atualizarProduto);
+
 router.get("/excluir/:id", userController.excluirProduto);
 
 module.exports = router;

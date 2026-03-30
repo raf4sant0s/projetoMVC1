@@ -13,11 +13,21 @@ exports.contato = (req, res) => {
 };
 
 exports.produtos = (req, res) => {
+
     const produtos = userModel.listar();
-    res.render("produtos", { produtos });
+
+    let produtoEditando = null;
+
+    if (req.query.editar) {
+        produtoEditando = userModel.buscar(req.query.editar);
+    }
+
+    res.render("produtos", { produtos, produtoEditando });
+
 };
 
 exports.cadastrarProduto = (req, res) => {
+
     const { nome, preco } = req.body;
 
     const produto = {
@@ -31,10 +41,19 @@ exports.cadastrarProduto = (req, res) => {
     res.redirect("/produtos");
 };
 
-exports.excluirProduto = (req, res) => {
-    const id = req.params.id;
+exports.atualizarProduto = (req, res) => {
 
-    userModel.remover(id);
+    const id = req.params.id;
+    const { nome, preco } = req.body;
+
+    userModel.atualizar(id, { nome, preco });
+
+    res.redirect("/produtos");
+};
+
+exports.excluirProduto = (req, res) => {
+
+    userModel.remover(req.params.id);
 
     res.redirect("/produtos");
 };
