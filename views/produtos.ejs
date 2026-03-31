@@ -7,131 +7,78 @@
 
 <body class="bg-gray-100">
 
-<nav class="bg-teal-400 p-4 text-white flex justify-center gap-6">
-<a href="/"><p class="hover:text-teal-700 transition">Home</p></a>
-<a href="/sobre"><p class="hover:text-teal-700 transition">Sobre</p></a>
-<a href="/contato"><p class="hover:text-teal-700 transition">Contato</p></a>
-<a href="/produtos"><p class="hover:text-teal-700 transition">Produtos</p></a>
-</nav>
+    <nav class="bg-teal-400 p-4 text-white flex justify-center gap-6">
+        <a href="/"><p class="hover:text-teal-700 transition">Home</p></a>
+        <a href="/sobre"><p class="hover:text-teal-700 transition">Sobre</p></a>
+        <a href="/contato"><p class="hover:text-teal-700 transition">Contato</p></a>
+        <a href="/produtos"><p class="hover:text-teal-700 transition">Produtos</p></a>
+    </nav>
 
-<div class="max-w-3xl mx-auto mt-16 bg-white p-10 rounded shadow">
+    <div class="max-w-3xl mx-auto mt-16 bg-white p-10 rounded shadow">
 
-<h1 class="text-2xl font-bold mb-6">Gerenciamento de Produtos</h1>
+        <h1 class="text-2xl font-bold mb-6">Gerenciamento de Produtos</h1>
 
-<h2 class="text-lg font-semibold mb-3">
-<%= produtoEditando ? "Editar Produto" : "Cadastrar Produto" %>
-</h2>
+        <h2 class="text-lg font-semibold mb-3"> 
+            <%= produtoEditando ? "Editar Produto" : "Cadastrar Produto" %>
+        </h2>
 
-<form
-action="<%= produtoEditando ? '/atualizar/' + produtoEditando.id : '/produtos' %>"
-method="POST"
-class="space-y-4 mb-10"
->
+        <form action="<%= produtoEditando ? '/atualizar/' + produtoEditando.id : '/produtos' %>" method="POST" class="space-y-4 mb-10">
 
-<div>
-<label class="block mb-1">Nome do Produto</label>
+            <div>
+                <label class="block mb-1">Nome do Produto</label>
+                <input type="text" name="nome" value="<%= produtoEditando ? produtoEditando.nome : '' %>" required class="w-full border p-2 rounded focus:ring-2 focus:ring-teal-500"/>
+            </div>
 
-<input
-type="text"
-name="nome"
-value="<%= produtoEditando ? produtoEditando.nome : '' %>"
-required
-class="w-full border p-2 rounded focus:ring-2 focus:ring-teal-500"
-/>
+            <div>
+                <label class="block mb-1">Preço</label>
+                <input type="number" name="preco" value="<%= produtoEditando ? produtoEditando.preco : '' %>" required class="w-full border p-2 rounded focus:ring-2 focus:ring-teal-500"/>
+            </div>
 
-</div>
+            <button class="bg-teal-400 text-white px-4 py-2 rounded hover:bg-teal-600">
+                <%= produtoEditando ? "Atualizar Produto" : "Adicionar Produto" %>
+            </button>
 
-<div>
-<label class="block mb-1">Preço</label>
+        </form> 
 
-<input
-type="number"
-name="preco"
-value="<%= produtoEditando ? produtoEditando.preco : '' %>"
-required
-class="w-full border p-2 rounded focus:ring-2 focus:ring-teal-500"
-/>
+        <h2 class="text-lg font-semibold mb-3">Buscar Produto</h2>
 
-</div>
+        <input id="search" placeholder="Buscar produto..." class="w-full border p-2 rounded mb-6"/>
 
-<button
-class="bg-teal-400 text-white px-4 py-2 rounded hover:bg-teal-600"
->
+        <h2 class="text-lg font-semibold mb-4">Lista de Produtos</h2>
 
-<%= produtoEditando ? "Atualizar Produto" : "Adicionar Produto" %>
+        <ul id="productList" class="space-y-2">
+            <% produtos.forEach(produto => { %>
+            <li class="flex justify-between items-center border p-3 rounded">
+                <span class="product-name"><%= produto.nome %> - R$ <%= produto.preco %></span>
+                <div class="flex gap-3">
+                    <a href="/editar/<%= produto.id %>" class="text-blue-600 hover:underline">Editar</a>
+                    <a href="/excluir/<%= produto.id %>" onclick="return confirm('Tem certeza que deseja excluir este produto?')" class="text-red-600 hover:underline">Excluir</a>
+                </div>
+            </li>
+        <% }) %>
+        </ul>
 
-</button>
+    </div>
 
-</form>
+    <script>
 
-<h2 class="text-lg font-semibold mb-3">Buscar Produto</h2>
+        const search = document.getElementById("search")
+        const products = document.querySelectorAll("#productList li")
 
-<input
-id="search"
-placeholder="Buscar produto..."
-class="w-full border p-2 rounded mb-6"
-/>
+        search.addEventListener("keyup", function() {
 
-<h2 class="text-lg font-semibold mb-4">Lista de Produtos</h2>
+            const value = search.value.toLowerCase()
 
-<ul id="productList" class="space-y-2">
+            products.forEach(product => {
 
-<% produtos.forEach(produto => { %>
+                const text = product.innerText.toLowerCase()
 
-<li class="flex justify-between items-center border p-3 rounded">
+                product.style.display = text.includes(value) ? "flex" : "none"
+            })
 
-<span class="product-name">
-<%= produto.nome %> - R$ <%= produto.preco %>
-</span>
+        })
 
-<div class="flex gap-3">
-
-<a
-href="/editar/<%= produto.id %>"
-class="text-blue-600 hover:underline"
->
-Editar
-</a>
-
-<a
-href="/excluir/<%= produto.id %>"
-onclick="return confirm('Tem certeza que deseja excluir este produto?')"
-class="text-red-600 hover:underline"
->
-Excluir
-</a>
-
-</div>
-
-</li>
-
-<% }) %>
-
-</ul>
-
-</div>
-
-<script>
-
-const search = document.getElementById("search")
-const products = document.querySelectorAll("#productList li")
-
-search.addEventListener("keyup", function() {
-
-const value = search.value.toLowerCase()
-
-products.forEach(product => {
-
-const text = product.innerText.toLowerCase()
-
-product.style.display =
-text.includes(value) ? "flex" : "none"
-
-})
-
-})
-
-</script>
+    </script>
 
 </body>
 </html>
