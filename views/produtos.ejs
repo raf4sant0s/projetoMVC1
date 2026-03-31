@@ -7,7 +7,7 @@
 
 <body class="bg-gray-100">
 
-<nav class="bg-blue-600 p-4 text-white flex justify-center gap-6">
+<nav class="bg-teal-400 p-4 text-white flex justify-center gap-6">
 <a href="/">Home</a>
 <a href="/sobre">Sobre</a>
 <a href="/contato">Contato</a>
@@ -36,7 +36,7 @@ type="text"
 name="nome"
 value="<%= produtoEditando ? produtoEditando.nome : '' %>"
 required
-class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500"
+class="w-full border p-2 rounded focus:ring-2 focus:ring-teal-500"
 />
 
 </div>
@@ -49,13 +49,13 @@ type="number"
 name="preco"
 value="<%= produtoEditando ? produtoEditando.preco : '' %>"
 required
-class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500"
+class="w-full border p-2 rounded focus:ring-2 focus:ring-teal-500"
 />
 
 </div>
 
 <button
-class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+class="bg-teal-400 text-white px-4 py-2 rounded hover:bg-teal-600"
 >
 
 <%= produtoEditando ? "Atualizar Produto" : "Adicionar Produto" %>
