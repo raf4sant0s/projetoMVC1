@@ -1,18 +1,19 @@
 {
   "name": "projetomvc1",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sistema de gestão de produtos com arquitetura MVC usando Node.js e Express",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raf4sant0s/projetoMVC1.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["mvc", "nodejs", "express", "ejs"],
+  "author": "raf4sant0s",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
