@@ -1,4 +1,4 @@
---  Projeto MVC: Sistema de Gestão de Produtos  --
+##  Projeto MVC: Sistema de Gestão de Produtos  ##
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/raf4sant0s/projetoMVC1)
 ![GitHub language count](https://img.shields.io/github/languages/count/raf4sant0s/projetoMVC1)
