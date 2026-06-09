@@ -16,6 +16,9 @@
                 <li><a href="/sobre">Sobre</a></li>
                 <li><a href="/contato">Contato</a></li>
                 <li><a href="/produtos">Produtos</a></li>
+                <% if (typeof user !== 'undefined' && user) { %>
+                    <li><a href="/logout" style="font-weight: bold; color: #ff4d4d;">Sair</a></li>
+                <% } %>
             </ul>
         </div>
     </nav>

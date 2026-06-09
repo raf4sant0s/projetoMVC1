@@ -12,7 +12,12 @@
     "type": "git",
     "url": "git+https://github.com/raf4sant0s/projetoMVC1.git"
   },
-  "keywords": ["mvc", "nodejs", "express", "ejs"],
+  "keywords": [
+    "mvc",
+    "nodejs",
+    "express",
+    "ejs"
+  ],
   "author": "raf4sant0s",
   "license": "ISC",
   "type": "commonjs",
@@ -22,6 +27,7 @@
   "homepage": "https://github.com/raf4sant0s/projetoMVC1#readme",
   "dependencies": {
     "ejs": "^5.0.1",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "express-session": "^1.19.0"
   }
 }
