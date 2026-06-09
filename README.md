@@ -1,10 +1,12 @@
-##  Projeto MVC: Sistema de Gestão de Produtos  ##
+# Projeto MVC: API de Gestão de Produtos
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/raf4sant0s/projetoMVC1)
 ![GitHub language count](https://img.shields.io/github/languages/count/raf4sant0s/projetoMVC1)
 ![Node Version](https://img.shields.io/node/v/express)
 
-Um sistema web desenvolvido com foco nas melhores práticas da arquitetura **MVC (Model-View-Controller)**. O projeto conta com um controle de acesso seguro, gerenciamento de sessões e operações de manipulação de dados em memória.
+Uma API robusta para gestão de produtos construída com base no padrão arquitetural MVC (Model-View-Controller) utilizando Node.js e Express.
+O sistema oferece controle de acesso seguro, autenticação baseada em sessão com cookies e gerenciamento de inventário.
+Sua estrutura modularizada facilita a manutenção, separando claramente as regras de negócio, lógica de banco de dados e rotas.
 
 ##  Tecnologias Utilizadas
 
@@ -51,11 +53,26 @@ cd projetoMVC1
 npm install
 ```
 
-###  Configuração e Credenciais
+### Variáveis de Ambiente (.env)
 
-Não é necessário configurar variáveis de ambiente complexas para rodar localmente. O projeto já inclui dados simulados de um usuário.
+Para rodar a aplicação localmente e configurar corretamente as integrações, crie um arquivo `.env` na raiz do projeto com a seguinte estrutura de exemplo (não inclua suas senhas reais):
 
-Para efetuar login e testar o controle de rotas da aplicação, utilize:
+```env
+# Configurações do Servidor
+PORT=3000
+NODE_ENV=development
+
+# Configurações de Segurança e Sessão
+SESSION_SECRET=sua_chave_secreta_aqui
+
+# Configurações de Banco de Dados (Exemplo para MySQL)
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=senha_forte_do_banco
+DB_NAME=ecommerce_db
+```
+
+*Nota: Para efetuar login na versão atual do protótipo e testar as rotas privadas, utilize os dados fictícios:*
 * **E-mail:** `admin@email.com`
 * **Senha:** `senha123`
 
